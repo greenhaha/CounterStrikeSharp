@@ -1,25 +1,24 @@
 ---
 title: Hello World Plugin
-description: How to write your first plugin for CounterStrikeSharp
+description: 如何为 CounterStrikeSharp 编写第一个插件。
 ---
 
 # Hello World Plugin
 
-How to write your first plugin for CounterStrikeSharp
+如何为 CounterStrikeSharp 编写第一个插件
 
-## Creating a New Project
+## 创建新项目
 
-First, ensure you have the relevant .NET 8.0 SDK for your platform installed on your machine. You can find the links to the latest downloads on the <a href="https://dotnet.microsoft.com/en-us/download/dotnet/8.0" target="_blank"> official Microsoft download page</a>.
+首先，确保您在计算机上安装了适合您平台的 .NET 8.0 SDK。您可以在<a href="https://dotnet.microsoft.com/en-us/download/dotnet/8.0" target="_blank"> 官方 Microsoft 下载页面</a>找到最新下载的链接。.
 
-### Creating a Class Library
-
-All CounterStrikeSharp plugins are installed on the server as built .dll class library binary files, so we will get started by creating a new class library using the inbuilt dotnet sdk tools.
+### 创建类库
+所有 CounterStrikeSharp 插件都作为构建好的 .dll 类库二进制文件安装在服务器上，因此我们将通过使用内置的 dotnet SDK 工具来创建一个新的类库。
 
 ```shell
 dotnet new classlib --name HelloWorldPlugin
 ```
 
-Use your IDE (Visual Studio/Rider) to add a reference to the `CounterStrikeSharp.Api.dll` file that is installed onto the server. If you are using VSCode or a text editor, you can edit the .csproj file directly and add the following:
+使用您的 IDE（Visual Studio/Rider）添加对安装在服务器上的 `CounterStrikeSharp.Api.dll` 文件的引用。如果您使用的是 VSCode 或文本编辑器，可以直接编辑 .csproj 文件并添加以下内容：
 
 ```diff
 <Project Sdk="Microsoft.NET.Sdk">
@@ -39,14 +38,14 @@ Use your IDE (Visual Studio/Rider) to add a reference to the `CounterStrikeSharp
 ```
 
 > [!TIP]
-> Instead of manually adding a reference to `CounterStrikeSharp.Api.dll`, you can > install the NuGet package `CounterStrikeSharp.Api` using the following:
+> 不要手动添加对 CounterStrikeSharp.Api.dll 的引用，您可以使用以下命令安装 NuGet 包 CounterStrikeSharp.Api：
 > ```shell
 > dotnet add package CounterStrikeSharp.API
 > ```
 
-### Creating a Plugin File
+### 创建插件文件
 
-Rename the default class file that came with your new project (by default it should be `Class1.cs`) to something more accurate, like `HelloWorldPlugin.cs`. Inside this file, we will insert the stub hello world plugin. Be sure to change the name and namespace so it matches your project name.
+将新项目中默认的类文件（默认应为 `Class1.cs`）重命名为更准确的名称，例如 `HelloWorldPlugin.cs`。在此文件中，我们将插入示例 Hello World 插件。请确保更改名称和命名空间，使其与您的项目名称匹配。
 
 ```csharp
 using CounterStrikeSharp.API.Core;
@@ -65,11 +64,11 @@ public class HelloWorldPlugin : BasePlugin
 }
 ```
 
-Now build your project using your ide or the `dotnet build` command. You should now have a built binary file in your `bin/Debug/net8.0` subdirectory in the project.
+现在，使用您的 IDE 或 `dotnet build` 命令构建项目。此时，您的项目应在 `bin/Debug/net8.0` 子目录中生成一个构建好的二进制文件。
 
-### Installing your Plugin
+### 安装你自己的插件
 
-Locate the `plugins` folder in your CS2 dedicated server (`/game/csgo/addons/counterstrikesharp/plugins`) and create a new folder with the exact same name as your output .dll file. In this example it would be `HelloWorldPlugin.dll`, so I will make a new folder called `HelloWorldPlugin`. Inside of this folder, copy and paste the: `HelloWorldPlugin.deps.json`, `HelloWorldPlugin.dll`, and `HelloWorldPlugin.pdb` files. Once completed, the folder should look as follows:
+找到 CS2 专用服务器中的 `plugins` 文件夹（`/game/csgo/addons/counterstrikesharp/plugins`），并创建一个与您的输出 .dll 文件名称完全相同的新文件夹。在此示例中，文件名为 `HelloWorldPlugin.dll`，因此我们将创建一个名为 `HelloWorldPlugin` 的新文件夹。在该文件夹中，复制并粘贴以下文件：`HelloWorldPlugin.deps.json`、`HelloWorldPlugin.dll` 和 `HelloWorldPlugin.pdb`。完成后，文件夹结构应如下所示：
 
 ```shell
 .
@@ -80,16 +79,17 @@ Locate the `plugins` folder in your CS2 dedicated server (`/game/csgo/addons/cou
 ```
 
 > [!CAUTION]
-> If you have installed external nuget packages for your plugin, you may need to include their respective `.dll`s. For example, if you utilize the `Stateless` C# library, include `stateless.dll` in your `HelloWorld` plugin directory.
+> 如果您的插件安装了外部 NuGet 包，则可能需要包含它们各自的 `.dll` 文件。例如，如果您使用了 `Stateless` C# 库，请将 `stateless.dll` 包含在 `HelloWorld` 插件目录中。
 
 > [!NOTE]
-> Note that some of these dependencies may change depending on the version of CounterStrikeSharp being used.
+> 请注意，根据所使用的 CounterStrikeSharp 版本，一些依赖项可能会有所不同。
 
-### Start the Server
+### 启动你的游戏服务器
 
-Now start your CS2 dedicated server. Just before the `CounterStrikeSharp.API Loaded Successfully.` message you should see your `Hello World!` console write that we called from the load function, neat!
+现在启动您的 CS2 专用服务器。在显示 `CounterStrikeSharp.API Loaded Successfully.` 消息之前，您应该会看到从加载函数调用的 `Hello World!` 控制台输出，恭喜你，你已经完成了第一个插件的编写与使用！
+
 
 > [!NOTE]
-> By default, CounterStrikeSharp will automatically hot reload your plugin if you replace the .dll file in your plugin folder. When it does so, it will call the `Unload` and `Load` functions respectively, with the `hotReload` flag set to true.
+> 默认情况下，如果您替换插件文件夹中的 .dll 文件，CounterStrikeSharp 将自动热重载您的插件。此时，它会分别调用 `Unload` 和 `Load` 函数，并将 `hotReload` 标志设置为 true。
 > 
-> It is worth noting that the framework will automatically deregister any event handlers or listeners for you automatically, so you can safely reregister these on load without checking this flag. However you may want to do some specific actions on a hot reload, which you can do in your `Load()` call by checking the flag!
+> 值得注意的是，框架会自动为您取消注册任何事件处理程序或监听器，因此您可以在加载时安全地重新注册这些，而无需检查该标志。不过，如果您希望在热重载时执行一些特定操作，可以在 `Load()` 调用中通过检查该标志来实现！
