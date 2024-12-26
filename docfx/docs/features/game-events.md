@@ -53,6 +53,12 @@ public override void Load(bool hotReload)
 
 这些事件属性是可变的，因此您可以像平常一样更新它们，它们将在事件实例中更新。
 
+
+> [!CAUTION]
+> `GameEvent` instances and their properties will cease to exist after the event listener function is called, which means that you will encounter errors when accessing properties in timers and functions like `Server.NextFrame()`. You should store the value of properties in variables before calling functions like `Server.NextFrame()` so you can read the data safely.
+
+## Preventing Broadcast
+
 ## 阻止广播
 
 您可以通过修改 `bool info.DontBroadcast` 属性来阻止游戏事件广播到客户端。 等等

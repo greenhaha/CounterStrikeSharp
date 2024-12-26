@@ -9,8 +9,9 @@ description: 如何开始安装和使用 CounterStrikeSharp。
 
 如果您更喜欢视频教程，可以点击此处观看 <a href="https://www.youtube.com/watch?v=FlsKzStHJuY" target="_blank">YouTube 视频</a> 
 
+
 ## 先决条件
-- <a href="https://www.sourcemm.net/downloads.php/?branch=master" target="_blank">Metamod: Source 2.X Dev Build</a>
+- <a href="https://www.metamodsource.net/downloads.php/?branch=master" target="_blank">Metamod: Source 2.X Dev Build</a>
 - <a href="https://github.com/roflmuffin/CounterStrikeSharp/releases" target="_blank">CounterStrikeSharp With Runtime</a>
 
 ## 安装 Metamod
