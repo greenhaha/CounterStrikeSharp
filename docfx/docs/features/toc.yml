@@ -1,10 +1,10 @@
-- name: Console Commands
+- name: 控制台命令
   href: console-commands.md
 
-- name: Console Variables
+- name: 控制台变量
   href: console-variables.md
 
-- name: Game Events
+- name: 游戏事件
   href: game-events.md
 
 - name: Global Listeners

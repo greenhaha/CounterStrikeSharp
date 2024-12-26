@@ -1,33 +1,34 @@
 ---
-title: Getting Started
-description: How to get started installing & using CounterStrikeSharp.
+title: 开始教程
+description: 如何开始安装和使用 CounterStrikeSharp。
 ---
 
-# Getting Started
+# 开始教程
 
-In this guide you will learn how to install CounterStrikeSharp onto your vanilla Counter-Strike 2 server. `CounterStrikeSharp` uses `Metamod:Source` as its main way of communicating with the game server, so both frameworks will need to be installed.
+在本指南中，您将学习如何将 CounterStrikeSharp 安装到原版的 Counter-Strike 2 服务器上。 `CounterStrikeSharp` 使用 `Metamod:Source` 作为其与游戏服务器通信的主要方式，因此需要安装这两个框架。
 
-If you're more of a visual person, here is a <a href="https://www.youtube.com/watch?v=FlsKzStHJuY" target="_blank">Youtube video</a> that covers everything.
+如果您更喜欢视频教程，可以点击此处观看 <a href="https://www.youtube.com/watch?v=FlsKzStHJuY" target="_blank">YouTube 视频</a> 
 
-## Prerequisites
+
+## 先决条件
 - <a href="https://www.metamodsource.net/downloads.php/?branch=master" target="_blank">Metamod: Source 2.X Dev Build</a>
 - <a href="https://github.com/roflmuffin/CounterStrikeSharp/releases" target="_blank">CounterStrikeSharp With Runtime</a>
 
-## Installing Metamod
+## 安装 Metamod
 
-1. Extract Metamod and copy the `/addons/` directory to `/game/csgo/`.
-2. Inside `/game/csgo/`, locate `gameinfo.gi`.
-3. Create a new line underneath `Game_LowViolence    csgo_lv` and add `Game    csgo/addons/metamod`.
-4. Restart your game server.
+1. 解压 Metamod，并将 `/addons/` 目录复制到 `/game/csgo/` 中。
+2. 在 `/game/csgo/` 目录下找到 `gameinfo.gi` 文件。
+3. 在 `Game_LowViolence    csgo_lv` 下方新建一行，并添加 `Game    csgo/addons/metamod`。
+4. 重启您的游戏服务器。
 
-Your `gameinfo.gi` should look like <a href="../../images/gameinfogi-example.png" target="_blank">this</a>. Type `meta list` in your server console to see if Metamod is loaded.
+您的 `gameinfo.gi` 文件应如下图所示：[示例图片](../../images/gameinfogi-example.png)。在服务器控制台中输入 `meta list`，查看 Metamod 是否已加载。
 
-## Installing CounterStrikeSharp
+## 安装 CounterStrikeSharp
 
-1. Extract CounterStrikeSharp and copy the `/addons/` directory to `/game/csgo/`.
-2. Restart your game server.
+1. 解压 CounterStrikeSharp，并将 `/addons/` 目录复制到 `/game/csgo/` 中
+2. 重启游戏服务器。
 
-Running the command `meta list` in the console should show 1 plugin loaded 🎉
+在控制台中运行命令 `meta list`，您应会看到已加载 1 个插件 🎉
 
 ```shell
 meta list
@@ -35,22 +36,24 @@ Listing 1 plugin:
   [01] CounterStrikeSharp (0.1.0) by Roflmuffin
 ```
 
-> [!CAUTION]
-> For Windows servers, you must have <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe" target="_blank">Visual Studio Redistributables</a> installed otherwise CounterStrikeSharp will not work.
+> [!注意]
+> 对于 Windows 服务器，必须安装 Visual Studio Redistributables，否则 CounterStrikeSharp 将无法正常工作。
 
-## Upgrading CounterStrikeSharp
+## 升级 CounterStrikeSharp
 
-To upgrade CounterStrikeSharp you simply need to download the latest release and copy it to your server, the same as the original installation. 
 
-CounterStrikeSharp is designed in a way where your configuration files will not be overwritten if you do this. As CounterStrikeSharp is already installed, you may download the non `with-runtime` build, but you will need to ensure your .NET runtime is up-to-date yourself. 
+要升级 CounterStrikeSharp，只需下载最新版本并将其复制到服务器中，步骤与初次安装相同。
 
-## Troubleshooting
+CounterStrikeSharp 设计时不会覆盖您的配置文件，因此可以安全地更新。由于已经安装了 CounterStrikeSharp，可以下载非 `with-runtime` 版本，但需要确保您的 .NET 运行时是最新的。
+ 
 
-- If this is your first time installing, you **MUST** download the `with-runtime` version. This includes a copy of the .NET runtime, which is required to run the plugin.
-- Depending on your OS you might also either need to install `libicu` / `icu-libs` / `libicu-dev` using your package manager for .NET to run.
-- If you get `Unknown Command` when typing `meta list` into your console, double-check the folders are copied over correctly and that your `gameinfo.gi` file is correctly modified.
+## 故障排除
 
-Your folder structure should look like this:
+- 如果是首次安装，**必须**下载 `with-runtime` 版本。该版本包含 .NET 运行时，这是插件运行所必需的。
+- 根据您的操作系统，您可能还需要使用软件包管理器安装 `libicu` / `icu-libs` / `libicu-dev` 以支持 .NET 运行。
+- 如果在控制台中输入 `meta list` 时出现 `Unknown Command`，请检查文件夹是否正确复制，`gameinfo.gi` 文件是否已正确修改。
+
+文件结构应如下所示：
 
 ```shell
 <server_path>/game/csgo/addons > tree -L 2

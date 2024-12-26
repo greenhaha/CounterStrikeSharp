@@ -1,20 +1,19 @@
 ---
-title: Game Events
-description: How to listen to Source 1 style game events.
+title: 游戏事件
+description: 如何监听 Source 1 风格的游戏事件。
 ---
 
 # Game Events
 
-How to listen to Source 1 style game events.
+如何监听 Source 1 风格的游戏事件。
+## 添加一个事件监听器
 
-## Adding an Event Listener
+### 自动注册
 
-### Automatic registration
-
-CounterStrikeSharp will automatically register event listeners marked with a `GameEventHandler` attribute on the `BasePlugin` class. These listeners are automatically registered/deregistered for you on hot reload.
+CounterStrikeSharp 将自动注册在 `BasePlugin` 类上使用 `GameEventHandler` 属性标记的事件监听器。这些监听器会在热重载时自动注册/注销。
 
 > [!NOTE]
-> The first parameter type must be a subclass of the `GameEvent` class. The names are automatically generated from the [game event list](https://cs2.poggu.me/dumped-data/game-events).
+> 第一个参数类型必须是`GameEvent` 类的子类。名称会根据 [游戏事件列表](https://cs2.poggu.me/dumped-data/game-events) 自动生成。
 
 ```csharp
 [GameEventHandler]
@@ -34,7 +33,7 @@ public HookResult OnPlayerConnect(EventPlayerConnect @event, GameEventInfo info)
 
 ### On Load
 
-It is also possible to bind event listeners in the `OnLoad` (or anywhere you have access to the plugin instance).
+在 `OnLoad` 方法中（或在任何可以访问插件实例的地方）也可以绑定事件监听器。
 
 ```csharp
 public override void Load(bool hotReload)
@@ -48,19 +47,22 @@ public override void Load(bool hotReload)
 }
 ```
 
-## Accessing Event Parameters
+## 访问事件参数
 
-The specific subclass of `GameEvent` will provide strongly typed parameters from the event definition. e.g. `event.Timelimit` will be a `long` value, `event.UserId` will be a `CCSPlayerController` and so-on.
+`GameEvent` 的特定子类将根据事件定义提供强类型的参数。例如，`event.Timelimit` 将是一个 `long` 值，`event.UserId` 将是一个 `CCSPlayerController`，等等。
 
-These event properties are mutable so you can update them as normal and they will update in the event instance.
+这些事件属性是可变的，因此您可以像平常一样更新它们，它们将在事件实例中更新。
+
 
 > [!CAUTION]
 > `GameEvent` instances and their properties will cease to exist after the event listener function is called, which means that you will encounter errors when accessing properties in timers and functions like `Server.NextFrame()`. You should store the value of properties in variables before calling functions like `Server.NextFrame()` so you can read the data safely.
 
 ## Preventing Broadcast
 
-You can modify a game event so that it does not get broadcast to clients by modifying the `bool info.DontBroadcast` property. e.g.
+## 阻止广播
 
-## Cancelling an Event
+您可以通过修改 `bool info.DontBroadcast` 属性来阻止游戏事件广播到客户端。 等等
 
-In a pre-event hook, you can prevent the event from continuing to other plugins by returning `HookResult.Handled` or `HookResult.Stop`.
+## 取消事件
+
+在预事件钩子中，您可以通过返回 `HookResult.Handled` 或 `HookResult.Stop` 来阻止事件继续传递到其他插件。

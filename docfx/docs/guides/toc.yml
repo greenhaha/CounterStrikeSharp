@@ -1,10 +1,10 @@
-- name: Getting Started
+- name: 开始教程
   href: getting-started.md
 
 - name: Hello World Plugin
   href: hello-world-plugin.md
 
-- name: Dependency Injection
+- name: 依赖注入
   href: dependency-injection.md
 
 - name: Referencing Players

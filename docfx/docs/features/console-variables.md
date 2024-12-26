@@ -1,29 +1,29 @@
 ---
-title: Console Variables
-description: How to read & write console variables (ConVars).
+title: 控制台变量
+description: 如何读取和写入控制台变量（ConVars）。
 ---
 
-# Console Variables
+# 控制台变量
 
-How to read & write console variables (ConVars).
+如何读取和写入控制台变量（ConVars）。
 
-## Finding a ConVar
+## 查找 ConVar
 
-Use the `ConVar.Find` static method to find a reference to an existing ConVar (or `null`).
+使用 `ConVar.Find` 静态方法查找对现有 ConVar 的引用（或返回 `null`）。
 
 ```csharp
 var cheatsCvar = ConVar.Find("sv_cheats");
 ```
 
-## Manipulating Primitive Values
+## 操作基本值
 
-Reading the value of a ConVar will depend on the type; for basic value Cvars (like float, int, bool) you can use the `GetPrimitiveValue` method to get a `ref` to the value.
+读取 ConVar 的值取决于其类型；对于基本值类型的 Cvar（如 float、int、bool），您可以使用 `GetPrimitiveValue` 方法获取该值的 `ref` 引用。
 
 ```csharp
 cheatsCvar.GetPrimitiveValue<bool>(); // false
 ```
 
-Because this is passed as a ref, you can simply set this value and it will change the underlying value, e.g.
+由于这是作为引用传递的，您可以直接设置该值，它将更改底层值，例如：
 
 ```csharp
 cheatsCvar.GetPrimitiveValue<bool>() = true; // false
@@ -32,9 +32,9 @@ cheatsCvar.GetPrimitiveValue<bool>() = true; // false
 cheatsCvar.SetValue(true);
 ```
 
-## Manipulating Strings
+## 操作字符串
 
-Because we have to do extra work to marshal strings between C# & the server, accessing strings is done differently, through the `StringValue` property which has getters & setters provided for you:
+由于需要额外的工作来在 C# 和服务器之间处理字符串，访问字符串的方式有所不同。可以通过 `StringValue` 属性来访问字符串，该属性为您提供了 getter 和 setter 方法。
 
 ```csharp
 var stringCvar = ConVar.Find("sv_skyname");
@@ -42,9 +42,9 @@ Console.WriteLine($"sv_skyname = {stringCvar.StringValue}");
 stringCvar.StringValue = "foobar";
 ```
 
-## Manipulating Native Objects
+## 操作原生对象
 
-Native objects must be handled differently as well, since these are not refs or strings, to do so we can use the `GetNativeValue()` method:
+原生对象也必须以不同的方式处理，因为它们既不是引用也不是字符串。为此，我们可以使用 `GetNativeValue()` 方法。
 
 ```csharp
 var fogCvar = ConVar.Find("fog_color");

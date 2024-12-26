@@ -9,6 +9,10 @@ export default {
       icon: "discord",
       href: "https://discord.gg/eAZU3guKWU",
       title: "Discord",
-    },
+    },{
+      icon: "translate",
+      href: "https://docs.cssharp.dev",
+      title: "Translate",
+    }
   ],
 };
